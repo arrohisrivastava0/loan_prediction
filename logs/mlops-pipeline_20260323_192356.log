@@ -1,2 +1,0 @@
-[2026-03-23 19:23:56,331] [INFO] mlops-pipeline - Config loaded successfully
-[2026-03-23 19:23:56,332] [INFO] mlops-pipeline - Config content: {'data': {'path': 'data/sample_data.csv', 'target': 'Loan_Status'}, 'training': {'test_size': 0.2, 'random_state': 42}, 'model': {'name': 'logistic_regression', 'params': {'max_iter': 500}}}
