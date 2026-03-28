@@ -4,7 +4,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 
-def train_model(preprocessor, X, y, model_params:dict, test_size:float, random_state:int):
+def train_model(X,y,preprocessor,model_params:dict, test_size:float, random_state:int):
     
     X_train, X_test, y_train, y_test = train_test_split(
         X, y,

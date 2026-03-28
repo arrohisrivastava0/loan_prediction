@@ -30,6 +30,7 @@ logger.info("Data preprocessing completed. Features: {}, Target: {}".format(X.sh
 # train model
 model, X_train, X_test, y_train, y_test = train_model(
     X, y,
+    preprocessor=preprocessor,
     model_params=config["model"]["params"],
     test_size=config["training"]["test_size"],
     random_state=config["training"]["random_state"]
