@@ -151,6 +151,12 @@ mlflow ui --backend-store-uri sqlite:///mlflow.db
 # open http://127.0.0.1:5000
 ```
 
+**6. Run the prediction API**
+```bash
+uvicorn app.main:app --reload
+# open http://127.0.0.1:8000/docs
+```
+
 ---
 
 ## Key Findings
