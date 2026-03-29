@@ -6,8 +6,7 @@ data/
 *.csv
 models/*.pkl
 .env
-artifacts/
 logs/
-*.logmlruns/
+*.log
 mlruns/
 mlflow.db
