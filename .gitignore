@@ -8,4 +8,6 @@ models/*.pkl
 .env
 artifacts/
 logs/
-*.log
+*.logmlruns/
+mlruns/
+mlflow.db

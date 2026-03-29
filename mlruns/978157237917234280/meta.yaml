@@ -1,7 +1,0 @@
-artifact_location: file:///home/arrohi/mlops_training_projects/proj_one/mlruns/978157237917234280
-creation_time: 1774718288821
-experiment_id: '978157237917234280'
-last_update_time: 1774718288821
-lifecycle_stage: active
-name: loan_prediction
-workspace: default
