@@ -15,6 +15,9 @@ pipelines, structured logging, and config-driven training.
 ## Project Structure
 ```
 loan-prediction/
+├── app/
+│   ├── __init__.py
+│   └── main.py                # FastAPI app — prediction endpoint
 ├── data/
 │   └── sample_data.csv        # raw dataset (614 rows, 13 columns)
 ├── src/
@@ -29,7 +32,11 @@ loan-prediction/
 │   └── config.yaml            # all parameters in one place
 ├── artifacts/
 │   └── best_model.pkl         # saved best model
+├── docs/
+│   └── images/                # screenshots for README
 ├── logs/                      # auto-generated run logs
+├── Dockerfile                 # containerization instructions
+├── .dockerignore              # files excluded from Docker build
 ├── requirements.txt
 └── README.md
 ```
