@@ -170,5 +170,5 @@ mlflow ui --backend-store-uri sqlite:///mlflow.db
 
 ## Author
 
-**Your Name**  
-[GitHub](https://github.com/YOUR_USERNAME) · [LinkedIn](https://linkedin.com/in/YOUR_USERNAME)
+**Arrohi Srivastava**  
+[GitHub](https://github.com/arrohisrivastava0) · [LinkedIn](https://linkedin.com/in/arrohisrivastava)
