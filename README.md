@@ -6,11 +6,10 @@ pipelines, structured logging, and config-driven training.
 
 ---
 
-## Demo
+## Live Demo
+🚀 **[Try it live](https://loan-prediction-fuy5.onrender.com/docs)**
 
-> 🚀 Live demo coming in Phase 3 — FastAPI + Streamlit deployment
-
----
+> Note: Free tier spins down after inactivity — first request may take 30-60 seconds to wake up.
 
 ## Project Structure
 ```
