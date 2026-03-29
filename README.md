@@ -157,6 +157,13 @@ uvicorn app.main:app --reload
 # open http://127.0.0.1:8000/docs
 ```
 
+**7. Run with Docker**
+```bash
+docker build -t loan-prediction .
+docker run -p 8000:8000 loan-prediction
+# open http://127.0.0.1:8000/docs
+```
+
 ---
 
 ## Key Findings
@@ -175,7 +182,9 @@ uvicorn app.main:app --reload
 
 - [x] Phase 1 — End-to-end ML pipeline
 - [x] Phase 2 — MLflow experiment tracking
-- [ ] Phase 3 — FastAPI deployment + Docker
+- [x] Phase 3a — FastAPI prediction endpoint
+- [x] Phase 3b — Docker containerization
+- [ ] Phase 3c — Live deployment (Render)
 - [ ] Phase 4 — CI/CD with GitHub Actions
 
 ---
