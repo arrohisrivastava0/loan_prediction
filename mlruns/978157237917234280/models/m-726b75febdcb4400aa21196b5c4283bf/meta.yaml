@@ -1,0 +1,10 @@
+artifact_location: file:///home/arrohi/mlops_training_projects/proj_one/mlruns/978157237917234280/models/m-726b75febdcb4400aa21196b5c4283bf/artifacts
+creation_timestamp: 1774796495814
+experiment_id: '978157237917234280'
+last_updated_timestamp: 1774796499113
+model_id: m-726b75febdcb4400aa21196b5c4283bf
+model_type: null
+name: model
+source_run_id: debde4e6ca264766827d2b720637e62b
+status: 2
+status_message: null

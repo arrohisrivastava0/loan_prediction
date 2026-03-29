@@ -16,7 +16,7 @@ def evaluate_model(model, X_test, y_test) -> dict:
     metrics={
         "accuracy": round(accuracy_score(y_test, y_pred), 4),
         "roc_auc": round(roc_auc_score(y_test, y_prob), 4),
-        "f1_score": round(f1_score(y_test, y_pred, pos_label='Y'), 4),
+        "f1_score": round(f1_score(y_test, y_pred, average='binary'), 4),
     }
 
     return metrics, y_pred

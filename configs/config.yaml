@@ -6,7 +6,18 @@ training:
   test_size: 0.2
   random_state: 42
 
-model:
-  name: logistic_regression
-  params:
-    max_iter: 1000
+# model:
+#   name: random_forest
+#   params:
+#     n_estimators: 100
+#     random_state: 42
+
+models_to_compare:
+  logistic_regression:
+    max_iter: 500
+  random_forest:
+    n_estimators: 100
+    random_state: 42
+  xgboost:
+    n_estimators: 100
+    random_state: 42

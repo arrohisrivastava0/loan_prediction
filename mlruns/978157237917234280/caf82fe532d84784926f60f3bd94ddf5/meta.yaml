@@ -1,0 +1,14 @@
+artifact_uri: file:///home/arrohi/mlops_training_projects/proj_one/mlruns/978157237917234280/caf82fe532d84784926f60f3bd94ddf5/artifacts
+end_time: 1774718301300
+entry_point_name: ''
+experiment_id: '978157237917234280'
+lifecycle_stage: active
+run_id: caf82fe532d84784926f60f3bd94ddf5
+run_name: xgboost
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1774718301274
+status: 4
+tags: []
+user_id: arrohi
