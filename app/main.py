@@ -2,7 +2,6 @@ import pickle
 import pandas as pd
 from fastapi import FastAPI
 from pydantic import BaseModel
-from typing import Optional
 
 # initialise app
 app = FastAPI(
@@ -20,7 +19,7 @@ with open("artifacts/best_model.pkl", "rb") as f:
 class LoanApplication(BaseModel):
     Gender: str
     Married: str
-    Dependents: str
+    Dependents: int
     Education: str
     Self_Employed: str
     ApplicantIncome: float
