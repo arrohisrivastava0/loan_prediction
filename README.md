@@ -115,6 +115,12 @@ Handled using `sklearn.pipeline.Pipeline` + `ColumnTransformer`:
 ### MLflow Dashboard
 ![MLflow Dashboard](docs/images/mlflow_runs_table.png)
 
+## API
+![API Docs](docs/images/api_docs.png)
+
+### Sample Prediction
+![API Prediction](docs/images/api_prediction.png)
+
 ## How to Run
 
 **1. Clone the repo**
