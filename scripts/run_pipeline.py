@@ -25,7 +25,7 @@ logger.info("Config loaded successfully")
 df = load_data(config["data"]["path"])
 logger.info(f"Data loaded: {df.shape}")
 
-# split features and target — map target to 0/1 once here
+# split features and target
 target_col = config["data"]["target"]
 X = df.drop(columns=[target_col, 'Loan_ID'], errors='ignore')
 y = df[target_col].map({'N': 0, 'Y': 1})
@@ -41,8 +41,8 @@ mlflow.set_experiment("loan_prediction")
 # train and log all models
 models_to_compare = config["models_to_compare"]
 
-best_model = None        # ← must be here
-best_roc_auc = 0         # ← must be here
+best_model = None        
+best_roc_auc = 0         
 
 for model_name, model_params in models_to_compare.items():
     with mlflow.start_run(run_name=model_name):
@@ -83,33 +83,8 @@ for model_name, model_params in models_to_compare.items():
             best_roc_auc = metrics["roc_auc"]
             best_model = pipeline
             best_model_name = model_name
-        
-        # save_model(model)
-        # logger.info(f"Model {model_name} saved to artifacts/model.pkl")
-        
+           
 # save best model
 save_model(best_model, path="artifacts/best_model.pkl")
 logger.info(f"Best model: {best_model_name} (ROC-AUC: {best_roc_auc}) saved to artifacts/best_model.pkl")
 print(f"\n✓ Best model: {best_model_name} with ROC-AUC: {best_roc_auc}")
-
-
-
-
-
-# train model
-# model, X_train, X_test, y_train, y_test = train_model(
-#     X, y,
-#     preprocessor=preprocessor,
-#     model_name=config["model"]["name"],
-#     model_params=config["model"]["params"],
-#     test_size=config["training"]["test_size"],
-#     random_state=config["training"]["random_state"]
-#     )
-# logger.info(f"Model training completed - model: {config['model']['name']}")
-
-# # evaluate model
-# metrics, y_pred = evaluate_model(model, X_test, y_test)
-# print_evaluation(metrics, y_test, y_pred)
-# logger.info(f"Metrics: {metrics}")
-
-# save model
