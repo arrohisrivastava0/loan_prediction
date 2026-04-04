@@ -2,6 +2,7 @@
 __pycache__/
 *.pyc
 .ipynb_checkpoints/
+tests/
 *.csv
 models/*.pkl
 .env
