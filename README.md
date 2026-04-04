@@ -1,6 +1,5 @@
 # Loan Prediction MLOps Pipeline
-
-![CI](https://github.com/arrohisrivastava0/loan-prediction/actions/workflows/ci.yml/badge.svg)
+[![ML Pipeline CI](https://github.com/arrohisrivastava0/loan_prediction/actions/workflows/ci.yml/badge.svg)](https://github.com/arrohisrivastava0/loan_prediction/actions/workflows/ci.yml)
 
 An end-to-end machine learning pipeline that predicts loan approval status,
 built with production MLOps practices — experiment tracking, reproducible
