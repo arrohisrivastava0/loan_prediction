@@ -1,21 +1,42 @@
-import pickle
+import os
 import pandas as pd
-from fastapi import FastAPI
+import mlflow.pyfunc
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 
-# initialise app
+# -----------------------------
+# App Initialization
+# -----------------------------
 app = FastAPI(
     title="Loan Prediction API",
-    description="Predicts loan approval based on applicant details",
-    version="1.0.0"
+    description="Predicts loan approval using MLflow Model Registry",
+    version="2.0.0"
 )
 
-# load model once at startup — not on every request
-with open("artifacts/best_model.pkl", "rb") as f:
-    model = pickle.load(f)
+MLFLOW_MODEL_URI = "models:/LoanPredictionModel/Production"
+
+model = None
 
 
-# input schema — defines exactly what the API expects
+# -----------------------------
+# Load Model on Startup
+# -----------------------------
+@app.on_event("startup")
+def load_model():
+    global model
+
+    try:
+        model = mlflow.pyfunc.load_model(MLFLOW_MODEL_URI)
+        print("✅ Model loaded from MLflow registry")
+
+    except Exception as e:
+        model = None
+        print(f"❌ Failed to load model: {e}")
+
+
+# -----------------------------
+# Input Schema
+# -----------------------------
 class LoanApplication(BaseModel):
     Gender: str
     Married: str
@@ -30,27 +51,52 @@ class LoanApplication(BaseModel):
     Property_Area: str
 
 
-# health check endpoint — tells you the API is running
+# -----------------------------
+# Health Check
+# -----------------------------
 @app.get("/")
 def root():
-    return {"status": "online", "model": "loan-prediction-v1"}
+    return {
+        "status": "online",
+        "model_loaded": model is not None,
+        "model_source": "MLflow Registry"
+    }
 
 
-# prediction endpoint
+# -----------------------------
+# Prediction Endpoint
+# -----------------------------
 @app.post("/predict")
 def predict(application: LoanApplication):
-    # convert input to dataframe — same format model was trained on
-    input_data = pd.DataFrame([application.model_dump()])
 
-    # get prediction and probability
-    prediction = model.predict(input_data)[0]
-    probability = model.predict_proba(input_data)[0][1]
+    if model is None:
+        raise HTTPException(
+            status_code=503,
+            detail="Model not available. Train and register a model first."
+        )
 
-    # model outputs 0/1 — convert back to human readable
-    result = "Approved" if prediction == 1 else "Rejected"
+    try:
+        # Convert input to DataFrame
+        input_data = pd.DataFrame([application.model_dump()])
 
-    return {
-        "prediction": result,
-        "probability_of_approval": round(float(probability), 4),
-        "status": "success"
-    }
+        # Predict
+        prediction = model.predict(input_data)[0]
+
+        # Some models may not support predict_proba
+        probability = None
+        if hasattr(model, "predict_proba"):
+            probability = float(model.predict_proba(input_data)[0][1])
+
+        result = "Approved" if prediction == 1 else "Rejected"
+
+        return {
+            "prediction": result,
+            "probability_of_approval": round(probability, 4) if probability else None,
+            "status": "success"
+        }
+
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Prediction failed: {str(e)}"
+        )

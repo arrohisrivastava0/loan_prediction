@@ -1,0 +1,11 @@
+FROM apache/airflow:2.8.1-python3.11
+
+USER airflow
+
+RUN pip install --no-cache-dir \
+    mlflow \
+    scikit-learn \
+    xgboost \
+    pandas \
+    psycopg2-binary \
+    pyyaml
